@@ -9,6 +9,13 @@ struct SearchResults {
 }
 
 impl SearchResults {
+    fn new(search_term: String) -> Self {
+        Self {
+            occurrences: vec![],
+            search_term,
+        }
+    }
+
     fn get_num_occurrences(self: &Self) -> usize {
         self.occurrences.len()
     }
@@ -52,10 +59,7 @@ fn load_file_contents(filename: String) -> String {
 }
 
 fn find_occurrences(file_contents: String, search_term: String) -> SearchResults {
-    let mut results = SearchResults {
-        occurrences: vec![],
-        search_term
-    };
+    let mut results = SearchResults::new(search_term);
 
     let mut line_num = 1;
                  
