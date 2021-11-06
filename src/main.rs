@@ -56,13 +56,18 @@ fn find_occurrences(file_contents: String, search_term: String) -> SearchResults
         occurrences: vec![],
         search_term
     };
+
+    let mut line_num = 1;
                  
     for line in file_contents.split("\n") {
         for word in line.split(" ") {
             if word == results.search_term {
-                results.occurrences.push(line.trim().to_string())
+                let occurrence = format!("Line {}: {}", line_num, line.trim().to_string());
+                results.occurrences.push(occurrence)
             }
         }
+
+        line_num += 1;
     }
 
     results
